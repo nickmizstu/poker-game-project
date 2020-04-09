@@ -1,7 +1,7 @@
 import csv
 import itertools
 
-
+#creating card deck
 carddeck = []
 
 pict = ['h','s','d','c']
@@ -29,6 +29,7 @@ print(x.num('13s'))
 print(x.pic('11j'))
 '''
 
+#Evaluat five card class
 class handclass(card):
 	def hand(self,h1,h2,h3,h4,h5):
 		x = card()
@@ -72,10 +73,10 @@ class handclass(card):
 		
 		else:
 			return (0)
-		#	print('High card!!')
+			#print('High card!!')
 		
 
-
+#Picking the highest class point
 class handpoint(handclass):
 	def points(self,myhand):
 		#handlist = ('high card!!','one pair!!','two pair!!','three cards!!','straight!!','flush!!','fullhouse!!','four cards!!','stright flush!!')
@@ -93,15 +94,23 @@ class handpoint(handclass):
 
 
 
-
+#creating hand and river list
 handcard = []
 rivercard = []
+
+#running every posibility
 for c in itertools.combinations(carddeck,2):
+	
+    #Making hand list
     handcard.append(c[0])
     handcard.append(c[1])
+    
+    #Making the card list that's left
     allcard = carddeck[:]
     allcard.remove(c[0])
     allcard.remove(c[1])
+    
+    #Writing them in csv file
     with open('%s.csv'%str(c), 'w',newline='') as f:     
         for t in itertools.combinations(allcard,5):
             writer = csv.writer(f) 
